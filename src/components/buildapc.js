@@ -15,7 +15,18 @@ class Buildapc extends Component {
       ssd1: false,
       ssd2: false,
       hdd: false,
-      activePart: 'case'
+      activePart: 'case',
+      colors: {
+        motherboard: 'purple',
+        cooler: 'brown',
+        ram: 'black',
+        gpu: 'green',
+        cpu: 'blue',
+        psu: 'black',
+        ssd1: 'blue',
+        ssd2: 'blue',
+        hdd: 'blue',
+      }
     }
     this.handleMouseover = this.handleMouseover.bind(this)
     this.handleMouseLeave = this.handleMouseLeave.bind(this)
@@ -38,7 +49,7 @@ class Buildapc extends Component {
     let currentTarget = e.target
     let currentCoords = currentTarget.getBoundingClientRect()
     let partName = e.target.className.split('-drag')[0]
-    let color = document.getElementsByTagName('style')[0].innerText.split(partName + '-drag')[1].split('background-color')[1].split(': ')[1].split(';')[0]
+    let color = this.state.colors[partName]
     let fixedTarget = document.getElementsByClassName(partName)[0]
     let targetCoords = fixedTarget.getBoundingClientRect()
     if (Math.abs(currentCoords.top - targetCoords.top) < 10 && Math.abs(currentCoords.left - targetCoords.left) < 10) {
